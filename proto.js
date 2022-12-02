@@ -54,10 +54,10 @@ CofeeMachine.prototype.run = function (drink) {
     case "еспрессо":
       this.time = 3000;
       break;
-    case "латте":
+    case "матча латте":
       this.time = 8000;
       break;
-    case "гарячий шоколад":
+    case "горячий шоколад":
       this.time = 6000;
       break;
     default:
