@@ -1,14 +1,16 @@
 window.onload = function () {
   class Machine {
-    constructor(info) {
+    constructor(info, img) {
       this.state = "stopped";
       this.time = 2000;
       this.timer = null;
       this.interval = null;
       this.info = info;
+      this.img = img;
     }
     run() {
       this.state = "started";
+      this.img.src = this.img.src.replace("-off", "-on");
       this.info.innerHTML += "Починаю роботу...";
       this.info.innerHTML += "Час приготування - " + this.time + " ";
       this.interval = setInterval(
@@ -25,6 +27,7 @@ window.onload = function () {
       clearTimeout(this.timer);
       this.info.innerHTML = "Готово! ";
       this.state = "stopped";
+      this.img.src = this.img.src.replace("-on", "-off");
       this.info.innerHTML += this.state;
     };
     stop() {
@@ -32,13 +35,14 @@ window.onload = function () {
       clearTimeout(this.timer);
       this.info.innerHTML = "Примусове вимкнення!";
       this.state = "stopped";
+      this.img.src = this.img.src.replace("-on", "-off");
       this.info.innerHTML += this.state;
     }
   }
 
   class CoffeeMachine extends Machine {
-    constructor(info) {
-      super(info);
+    constructor(info, img) {
+      super(info, img);
       this.drink = "вода";
     }
     run(drink) {
@@ -80,8 +84,8 @@ window.onload = function () {
   }
 
   class Multivariate extends Machine {
-    constructor(info) {
-      super(info);
+    constructor(info, img) {
+      super(info, img);
       this.cook = "кип'ятіння";
     }
     run(cook) {
@@ -101,7 +105,7 @@ window.onload = function () {
             case "тушкування":
               this.time = 30000;
               break;
-            case "випічки":
+            case "випічка":
               this.time = 17000;
               break;
             default:
@@ -116,7 +120,7 @@ window.onload = function () {
       }
     }
   }
-
+  let imgCoffe = document.getElementById("imgCoffe");
   let infoCoffee = document.getElementById("textCoffeMachine");
   let latte = document.getElementById("latte");
   let espresso = document.getElementById("espresso");
@@ -125,7 +129,7 @@ window.onload = function () {
   let stopCoffe = document.getElementById("stopCoffe");
 
   // let machine = new Machine(info);
-  let coffeeMachine = new CoffeeMachine(infoCoffee);
+  let coffeeMachine = new CoffeeMachine(infoCoffee, imgCoffe);
 
   latte.addEventListener("click", function () {
     coffeeMachine.run("латте");
@@ -145,24 +149,24 @@ window.onload = function () {
   stopCoffe.addEventListener("click", function () {
     coffeeMachine.stop();
   });
-
+  let imgMulti = document.getElementById("imgMulti");
   let infoMulti = document.getElementById("textMultivariate");
   let soup = document.getElementById("soup");
   let stewing = document.getElementById("stewing");
   let baking = document.getElementById("baking");
   let stopMulti = document.getElementById("stopMulti");
 
-  let multivariate = new Multivariate(infoMulti);
+  let multivariate = new Multivariate(infoMulti, imgMulti);
 
   soup.addEventListener("click", function () {
-    multivariate.run("soup");
+    multivariate.run("суп");
   });
 
   stewing.addEventListener("click", function () {
-    Multivariate.run("еспрессо");
+    multivariate.run("тушкування");
   });
   baking.addEventListener("click", function () {
-    multivariate.run("матча латте");
+    multivariate.run("випічка");
   });
 
   stopMulti.addEventListener("click", function () {
