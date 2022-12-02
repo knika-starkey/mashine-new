@@ -121,7 +121,9 @@ window.onload = function () {
     }
   }
   let imgCoffe = document.getElementById("imgCoffe");
+  let imgCoffeRes = document.getElementById("imgCoffeRes");
   let infoCoffee = document.getElementById("textCoffeMachine");
+
   let latte = document.getElementById("latte");
   let espresso = document.getElementById("espresso");
   let matchaLatte = document.getElementById("matchaLatte");
@@ -132,17 +134,21 @@ window.onload = function () {
   let coffeeMachine = new CoffeeMachine(infoCoffee, imgCoffe);
 
   latte.addEventListener("click", function () {
+    imgCoffeRes.src = "./images/latte.png";
     coffeeMachine.run("латте");
   });
 
   espresso.addEventListener("click", function () {
+    imgCoffeRes.src = "./images/espresso.png";
     coffeeMachine.run("еспрессо");
   });
   matchaLatte.addEventListener("click", function () {
+    imgCoffeRes.src = "./images/matchaLatte.png";
     coffeeMachine.run("матча латте");
   });
 
   hotChocolate.addEventListener("click", function () {
+    imgCoffeRes.src = "./images/hotChocolate.png";
     coffeeMachine.run("горячий шоколад");
   });
 
@@ -150,7 +156,9 @@ window.onload = function () {
     coffeeMachine.stop();
   });
   let imgMulti = document.getElementById("imgMulti");
+  let imgMultiRes = document.getElementById("imgMultiRes");
   let infoMulti = document.getElementById("textMultivariate");
+
   let soup = document.getElementById("soup");
   let stewing = document.getElementById("stewing");
   let baking = document.getElementById("baking");
@@ -159,13 +167,16 @@ window.onload = function () {
   let multivariate = new Multivariate(infoMulti, imgMulti);
 
   soup.addEventListener("click", function () {
+    imgMultiRes.src = "./images/soup.png";
     multivariate.run("суп");
   });
 
   stewing.addEventListener("click", function () {
+    imgMultiRes.src = "./images/stewing.png";
     multivariate.run("тушкування");
   });
   baking.addEventListener("click", function () {
+    imgMultiRes.src = "./images/baking.png";
     multivariate.run("випічка");
   });
 
